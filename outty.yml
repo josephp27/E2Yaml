@@ -1,9 +1,0 @@
-conveyor:
-	injected:
-		pcf:
-			appname: budgerigar-dev
-			org: cts-parakeet
-		product:
-			id: 041800001BJR
-java:
-	opts: -Dcontrast.override.appversion=5904ad831113ef7a7d03318b07b4f87b4f6d5333ab9613dd9f4388e3804ad82f -Dcontrast.override.appname="041800001BJR" -Dassess.tags=5904ad831113ef7a7d03318b07b4f87b4f6d5333ab9613dd9f4388e3804ad82f -Dapplication.tags=5904ad831113ef7a7d03318b07b4f87b4f6d5333ab9613dd9f4388e3804ad82f

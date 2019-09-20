@@ -1,0 +1,60 @@
+endpoint:
+	mock: false
+	password: 4324324-43432-434-234-432243-12
+	url: https://test.com
+	username: username
+auditLog:
+	kafkaEnabled: false
+	logInsertsEnabled: false
+	password: "T$#%FDSFAKE^"
+test-messaging:
+	consumers:
+		idle_concurrent: 1
+		max_concurrent: 2
+	inbound_queue: TEST_TEST.TEST_OUTBOUND.V1_0
+	fake:
+		ems:
+			connection_attempts: 6
+			connection_timeout: 30000
+			password: TEST43535308
+			reconnection_attempts: 6
+			reconnection_timeout: 90000
+			username: fdsferrgds324
+		jndi:
+			credentials: vdgergre3
+			principal: "r34r4rwrw!"
+			queue_connection_factory: ALS.IT.TEST
+			url: https://testurl.com
+messaging:
+	outbound_queue: ALS.TEST.FAKEAPP_OUTBOUND.V1_0
+	retry_queue: ALS.TEST.FAKEAPP_RETRY.V1_0
+	tibco:
+		ems:
+			password: fakepass53453
+			username: fakepassFAKEc-ext
+		jndi:
+			credentials: fakepass53453
+			principal: fakepassFAKEc-ext
+			queue_connection_factory: FAKE.GGH.GHDS.FDS
+			url: tibjmsnaming://fake-url.com:22220
+spring:
+	data:
+		mongodb:
+			database: TESTDB
+			encryption: disabled
+			encryption-key: "FakePassWord!"
+			password: "!54353Ffesf34"
+			replicaSet: FAKE-DB-531
+			server[0]:
+				host: endpoint5557.server.com
+				port: 27010
+			server[1]:
+				host: endpoint5558.server.com
+				port: 27010
+			server[2]:
+				host: endpoint5560.server.com
+				port: 27010
+			server[3]:
+				host: endpoint5561.server.com
+				port: 27010
+			username: sys-TESTDBB4
