@@ -39,23 +39,21 @@ class EyConverter:
     def convert_to_dictionary(self):
 
         for line in self.lines:
-            line = line.rstrip()
-            try:
-                self.print(f"PARSING: \t{line}", new_line=False)
-                if ignored_term_in_line(line, self.ignored_terms):
-                    self.print("\tSKIPPING")
-                    continue
 
-                key, value = line.split(':', 1)
+            self.print(f"PARSING: \t{line}", new_line=False)
 
-                processed_key = process_key(key, self.preserved_words_dict)
-                processed_value = value.strip()
+            if ignored_term_in_line(line, self.ignored_terms):
+                self.print("\tSKIPPING")
+                continue
 
-                self.d = convert_key_value_pairs_to_dictionary(processed_key, processed_value, self.d)
-                self.print("\tOK")
+            key, value = line.split(':', 1)
 
-            except Exception as e:
-                self.print(f"\nEXCEPTION: {e}")
+            processed_key = process_key(key, self.preserved_words_dict)
+            processed_value = value.strip()
+
+            self.d = convert_key_value_pairs_to_dictionary(processed_key, processed_value, self.d)
+
+            self.print("\tOK")
 
         return self
 
@@ -87,7 +85,7 @@ class EyConverter:
 
     def print(self, message, new_line=True):
         if self.log:
-            print(message, end='\n' if new_line else '')
+            print(message.rstrip(), end='\n' if new_line else '')
 
 
 def load_file(filename, log=False):
