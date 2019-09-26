@@ -1,6 +1,9 @@
+#!/usr/bin/env python3
 import eyconverter as ey
 
-yml = ey.load_file('test_input.env', log=True)
+
+yml = ey.from_clipboard(log=True)
+# yml = ey.load_file('test_input.env', log=True)
 
 yml.ignore_lines_containing('JAVA_OPTS', 'CONVEYOR')
 
@@ -22,4 +25,4 @@ yml.preserve_words('auditLog',
                    'reconnection_attempts',
                    'replicaSet')
 
-yml.convert_to_dictionary().write_file('output.yml')
+yml.convert_to_dictionary().to_clipboard()
