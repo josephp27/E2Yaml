@@ -16,6 +16,11 @@ class EyConverter:
         self.d = {}
         self.output = []
         self.log = log
+        
+    def add_line(self, line):
+        
+        self.lines.append(lines)
+        return self
 
     def from_clipboard(self):
 
