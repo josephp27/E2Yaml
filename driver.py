@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
+
+# first import the tool
 import eyconverter as ey
 
-
+# example program loading from clipboard and outputting to clipboard
 yml = ey.from_clipboard(log=True)
+
+# uncomment this if you would like to convert a file
 # yml = ey.load_file('test_input.env', log=True)
 
+# optional argument to ignore lines that contain a value. Accepts unlimited parameters
 yml.ignore_lines_containing('JAVA_OPTS', 'CONVEYOR')
 
+# optional argument to maintain a word. If your config uses camel case or under scores
+# this is a setting you want. Note: only preserves the specified word, NOT the line.
+# use ignore_lines_containing above if that is your use case
 yml.preserve_words('auditLog',
                    'logInsertsEnabled',
                    'kafkaEnabled',
@@ -25,4 +33,6 @@ yml.preserve_words('auditLog',
                    'reconnection_attempts',
                    'replicaSet')
 
+# first you need to convert the input to a dictionary, then set the output destination. 
+# in this case we are writing to the clipboard. Other options include a file or stdout
 yml.convert_to_dictionary().to_clipboard()
