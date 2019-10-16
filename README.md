@@ -1,5 +1,36 @@
 # E2Yaml
-An environment variable to yaml converter
+An environment variable to yaml converter. 
+
+Due to security reasons at my job, we cannot upload contents of Yaml files that have sensitive data. Variables are injected into a virtual environment as environment variables via a Jenkins job. However, when testing locally, sometimes we need those variables. E2Yaml addresses that problem.
+
+```
+SPRING_DATA_MONGODB_DATABASE: TESTDB
+SPRING_DATA_MONGODB_ENCRYPTION: disabled
+SPRING_DATA_MONGODB_ENCRYPTION-KEY: FakePassWord!
+SPRING_DATA_MONGODB_PASSWORD: !54353Ffesf34
+SPRING_DATA_MONGODB_REPLICASET: FAKE-DB-531
+```
+Converts to:
+```
+spring:
+  data:
+    mongodb:
+      database: TESTDB
+      encryption: disabled
+      encryption-key: "FakePassWord!"
+      password: "!54353Ffesf34"
+      replicaSet: FAKE-DB-531
+```
+ And we can see this from the command line by runnning driver.py:
+ 
+ ```
+ ╰─$ python3 driver.py
+PARSING: 	SPRING_DATA_MONGODB_DATABASE: TESTDB	OK
+PARSING: 	SPRING_DATA_MONGODB_ENCRYPTION: disabled	OK
+PARSING: 	SPRING_DATA_MONGODB_ENCRYPTION-KEY: FakePassWord!	OK
+PARSING: 	SPRING_DATA_MONGODB_PASSWORD: !54353Ffesf34	OK
+PARSING: 	SPRING_DATA_MONGODB_REPLICASET: FAKE-DB-531	OK
+ ```
 
 ## Importing
 ```
