@@ -1,9 +1,8 @@
 import re
 from collections import Mapping
 
-from utilities import ignored_term_in_line, process_key, convert_key_value_pairs_to_dictionary, read_from_clipboard, \
-    write_to_clipboard
-
+from utilities import write_to_clipboard, read_from_clipboard, ignored_term_in_line, \
+    convert_key_value_pairs_to_dictionary, process_key
 
 class EyConverter:
 
@@ -19,7 +18,7 @@ class EyConverter:
         
     def add_line(self, line):
         
-        self.lines.append(lines)
+        self.lines.append(line)
         return self
 
     def from_clipboard(self):

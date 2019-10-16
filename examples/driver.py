@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 # first import the tool
-import eyconverter as ey
 
 # example program loading from clipboard and outputting to clipboard
-yml = ey.from_clipboard(log=True)
+from E2Yaml import E2Yaml
+
+yml = E2Yaml.from_clipboard(log=True)
 
 # uncomment this if you would like to convert a file
 # yml = ey.load_file('test_input.env', log=True)
