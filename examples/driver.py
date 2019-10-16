@@ -3,7 +3,7 @@
 # first import the tool
 
 # example program loading from clipboard and outputting to clipboard
-from E2Yaml import E2Yaml
+import E2Yaml
 
 yml = E2Yaml.from_clipboard(log=True)
 
