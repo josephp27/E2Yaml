@@ -34,7 +34,7 @@ PARSING: 	SPRING_DATA_MONGODB_REPLICASET: FAKE-DB-531	OK
 
 ## Importing
 ```
-import eyconverter as ey
+import E2Yaml as ey
 ```
 
 ## Loading
@@ -48,7 +48,7 @@ yml = ey.load_file('test_input.env', log=True)
 Note: you can disable logging by not including the second parameter *log=True*
 
 # adding one line at a time
-yml = :ey.add_line("SOME_TEXT=true")
+yml = ey.add_line("SOME_TEXT=true")
 ```
 
 ## Preserving Words
