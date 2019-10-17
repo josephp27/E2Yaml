@@ -49,11 +49,10 @@ yml = ey.from_clipboard(log=True)
 # converting a file
 yml = ey.load_file('test_input.env', log=True)
 
-Note: you can disable logging by not including the second parameter *log=True*
-
 # adding one line at a time
 yml = ey.add_line("SOME_TEXT=true")
 ```
+Note: you can disable logging by not including the second parameter *log=True*
 
 ## Preserving Words
 Environment variables are delimited by '_' to indicate nesting in YAML and sometimes these characters are also used to define a variable. You can choose to preserve the letters by calling this function
