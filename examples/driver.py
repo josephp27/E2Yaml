@@ -11,7 +11,7 @@ yml = E2Yaml.from_clipboard(log=True)
 # yml = ey.load_file('test_input.env', log=True)
 
 # optional argument to ignore lines that contain a value. Accepts unlimited parameters
-yml.ignore_lines_containing('JAVA_OPTS', 'CONVEYOR')
+yml.ignore_lines_containing('JAVA_OPTS', 'CONVEYOR', 'JBP')
 
 # optional argument to maintain a word. If your config uses camel case or under scores
 # this is a setting you want. Note: only preserves the specified word, NOT the line.
@@ -32,8 +32,10 @@ yml.preserve_words('auditLog',
                    'connection_attempts',
                    'reconnection_timeout',
                    'reconnection_attempts',
-                   'replicaSet')
+                   'replicaSet',
+                   'receive_timeout',
+                   'client_key')
 
-# first you need to convert the input to a dictionary, then set the output destination. 
+# first you need to convert the input to a dictionary, then set the output destination.
 # in this case we are writing to the clipboard. Other options include a file or stdout
 yml.convert_to_dictionary().to_clipboard()
