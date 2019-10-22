@@ -32,10 +32,11 @@ PARSING: 	SPRING_DATA_MONGODB_PASSWORD: !54353Ffesf34	OK
 PARSING: 	SPRING_DATA_MONGODB_REPLICASET: FAKE-DB-531	OK
  ```
 ## Installing
+From bash run the line below
 ```
-pip3 install E2Yaml
+pip install E2Yaml
 ```
-
+This project is published on pip at: https://pypi.org/project/E2Yaml/
 ## Importing
 ```
 import E2Yaml as ey
@@ -44,7 +45,7 @@ import E2Yaml as ey
 ## Loading
 ```
 # example program loading from clipboard and outputting to clipboard
-yml = ey.from_clipboard(log=True)
+yml = ey.from_clipboard(log=True, separate=True)
 
 # converting a file
 yml = ey.load_file('test_input.env', log=True)
@@ -52,7 +53,7 @@ yml = ey.load_file('test_input.env', log=True)
 # adding one line at a time
 yml = EyConverter().add_line("SOME_TEXT=true")
 ```
-Note: you can disable logging by not including the second parameter *log=True*
+Note: you can disable logging by not including the second parameter *log=True* and provide better output spacing with *separate=True*
 
 ## Preserving Words
 Environment variables are delimited by '_' to indicate nesting in YAML and sometimes these characters are also used to define a variable. You can choose to preserve the letters by calling this function
