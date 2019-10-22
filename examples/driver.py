@@ -5,10 +5,10 @@
 # example program loading from clipboard and outputting to clipboard
 import E2Yaml
 
-yml = E2Yaml.from_clipboard(log=True)
+yml = E2Yaml.from_clipboard(log=True, separate=True)
 
 # uncomment this if you would like to convert a file
-# yml = ey.load_file('test_input.env', log=True)
+# yml = E2Yaml.load_file('test_input.env', log=True)
 
 # optional argument to ignore lines that contain a value. Accepts unlimited parameters
 yml.ignore_lines_containing('JAVA_OPTS', 'CONVEYOR', 'JBP')

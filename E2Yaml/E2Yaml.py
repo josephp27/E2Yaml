@@ -1,13 +1,13 @@
 import re
 from collections import Mapping
 
-from E2Yaml.utilities import read_from_clipboard, write_to_clipboard, ignored_term_in_line, \
+from utilities import read_from_clipboard, write_to_clipboard, ignored_term_in_line, \
     convert_key_value_pairs_to_dictionary, process_key
 
 
 class EyConverter:
 
-    def __init__(self, log=False):
+    def __init__(self, log=False, separate=False):
 
         self.special_characters = re.compile('[@!#$%^&*()<>?\|}{~]')
         self.lines = []
@@ -16,6 +16,7 @@ class EyConverter:
         self.d = {}
         self.output = []
         self.log = log
+        self.separate = separate
         
     def add_line(self, line):
         
@@ -24,18 +25,19 @@ class EyConverter:
 
     def from_clipboard(self):
 
-        self.lines = read_from_clipboard().split('\n')
+        self.lines = filter(None, read_from_clipboard().split('\n'))
         return self
 
     def to_clipboard(self):
 
-        self.build_output(self.d, 0)
+        self.build_output(self.d, 0, 0)
         write_to_clipboard('\n'.join(str(line) for line in self.output))
 
     def load_file(self, filename):
 
         with open(filename) as file:
-            self.lines = file.readlines()
+            self.lines = filter(lambda x: x != '\n', file.readlines())
+            print(self.lines)
 
         return self
 
@@ -75,13 +77,20 @@ class EyConverter:
 
         return self
 
-    def build_output(self, yml_dict, tab_count):
+    def build_output(self, yml_dict, tab_count, level):
 
+        index = 0
         for key, value in yml_dict.items():
+
+            if level == 0 and self.separate and index != 0:
+                self.output.append('')
+
+            index += 1
+            
             self.output.append('  ' * tab_count + key + ':')
 
             if isinstance(value, Mapping):
-                self.build_output(value, tab_count + 1)
+                self.build_output(value, tab_count + 1, level + 1)
             else:
                 if self.special_characters.search(value):
                     value = f'"{value}"'
@@ -90,13 +99,13 @@ class EyConverter:
 
     def show(self):
 
-        self.build_output(self.d, 0)
+        self.build_output(self.d, 0, 0)
         for line in self.output:
             print(line)
 
     def write_file(self, filename):
 
-        self.build_output(self.d, 0)
+        self.build_output(self.d, 0, 0)
         with open(filename, 'wb+') as file:
             for line in self.output:
                 file.write(str.encode(line + "\n"))
@@ -106,9 +115,9 @@ class EyConverter:
             print(message.rstrip(), end='\n' if new_line else '')
 
 
-def load_file(filename, log=False):
-    return EyConverter(log).load_file(filename)
+def load_file(filename, log=False, separate=False):
+    return EyConverter(log, separate).load_file(filename)
 
 
-def from_clipboard(log=False):
-    return EyConverter(log).from_clipboard()
+def from_clipboard(log=False, separate=False):
+    return EyConverter(log, separate).from_clipboard()
