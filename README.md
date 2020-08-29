@@ -1,6 +1,7 @@
 # E2Yaml
 An environment variable to yaml converter. 
 
+## Purpose
 Due to security reasons at my job, we cannot upload contents of Yaml files that have sensitive data. Variables are injected into a virtual environment as environment variables via a Jenkins job. However, when testing locally, sometimes we need those variables. E2Yaml addresses that problem.
 
 ```
@@ -11,7 +12,7 @@ SPRING_DATA_MONGODB_PASSWORD: !54353Ffesf34
 SPRING_DATA_MONGODB_REPLICASET: FAKE-DB-531
 ```
 Converts to:
-```
+```yml
 spring:
   data:
     mongodb:
@@ -33,17 +34,17 @@ PARSING: 	SPRING_DATA_MONGODB_REPLICASET: FAKE-DB-531	OK
  ```
 ## Installing
 From bash run the line below
-```
+```bash
 pip install E2Yaml
 ```
 This project is published on pip at: https://pypi.org/project/E2Yaml/
 ## Importing
-```
+```bash
 import E2Yaml as ey
 ```
 
 ## Loading
-```
+```python
 # example program loading from clipboard and outputting to clipboard
 yml = ey.from_clipboard(log=True, separate=True)
 
@@ -57,7 +58,7 @@ Note: you can disable logging by not including the second parameter *log=True* a
 
 ## Preserving Words
 Environment variables are delimited by '_' to indicate nesting in YAML and sometimes these characters are also used to define a variable. You can choose to preserve the letters by calling this function
-```
+```python
 yml.preserve_words('auditLog',
                     'logInsertsEnabled',
                     'kafkaEnabled',
@@ -80,13 +81,13 @@ Note: environment variables are usually upper case and camel case is lost in tra
 
 ## Ignoring Lines
 If you're loading in from a file or from your clipboard, you can ignore specific lines containing an attribute.
-```
+```python
 yml.ignore_lines_containing('JAVA_OPTS', 'CONVEYOR')
 ```
 
 ## Converting
 First, you need to call the function *convert_to_dictionary()*, which returns itself, allowing chaining. Then, setting the proper output to clipboard, stdout, or a file.
-```
+```python
 # in this case we are writing to the clipboard.
 yml.convert_to_dictionary().to_clipboard()
 
