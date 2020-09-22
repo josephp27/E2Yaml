@@ -1,4 +1,4 @@
-# E2Yaml
+# E2Yaml [![Downloads](https://pepy.tech/badge/e2yaml)](https://pepy.tech/project/e2yaml) [![Downloads](https://pepy.tech/badge/e2yaml/month)](https://pepy.tech/project/e2yaml/month) [![Downloads](https://pepy.tech/badge/e2yaml/week)](https://pepy.tech/project/e2yaml/week)
 An environment variable to yaml converter. 
 
 ## Purpose
